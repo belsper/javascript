@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>자바스크립트 2일차</title>
+
+    <script>
+        // 데이터 타입(자료형)
+        // 자바스크립트에서 사용되는 데이터의 유형을 말함
+        // 숫자형, 문자열형, 논리형, 배열, 객체형, null, undefined
+
+        // 숫자형(Number) : 일반적으로 사용하는 숫자
+        // 자바스크립트의 숫자형은 정수와 실수를 구분하지 않음
+        // 정수와 실수를 연산 시 실수로 변환하여 연산을 진행함
+        // 숫자형과 문자열형을 연산 시 숫자형을 문자열형으로 변환하여 연산
+        // 지수 표기법을 사용할 수 있음
+        // 지수 표기법을 사용하지 않을 경우 최대 15자리까지 표시
+        // 최대 소수점 자리수는 17이지만 100% 정확하지 않음
+        // 숫자형 최대값 : 배정밀도 64비트 형식의 크기
+        var x = Number.MAX_VALUE;
+        var y = Number.MIN_VALUE;
+        console.log(x);
+        console.log(y);
+
+        var a = 3.14; // 실수를 저장
+        var b = 3; // 정수를 저장
+        console.log(a);
+        console.log(b);
+
+        a = 123e5; // 12300000
+        b = 123e-5; // 0.00123
+        console.log(a);
+        console.log(b);
+
+        a = 999999999999999; // 15자리
+        b = 9999999999999999; // 16자리
+        console.log(a); // 15자리까지만 정확한 숫자로 표현
+        console.log(b); // 그 이상의 숫자는 정확한 숫자라고 보장하지 못함
+
+        a = 0.2 + 0.1; // 화면 출력 시 소수점 17자리까지 표현
+        console.log(a); // 100% 정확한 값을 출력하지는 않음
+        
+        b = (0.2 * 10 + 0.1 * 10) / 10;
+        console.log(b);
+
+        // 숫자형과 문자열형의 연산
+        var a = 20; // 숫자형의 20
+        var b = "20"; // 문자열형의 20
+        var c = a + b; // 숫자와 문자를 + 연산 시 숫자형이 자동으로 문자열형으로 변환되어 문자열 + 문자열 형태로 바뀜
+        console.log(c); // 2020이 출력
+
+        a = "10"; // 문자열형의 10
+        b = "20"; // 문자열형의 20
+        c = a + b; // 문자열 10 + 문자열 20
+        console.log(c); // 1020 으로 출력
+
+        c = a - b; // 문자열 10 - 문자열 20
+        console.log(c); // -10 / 문자열형의 숫자는 서로 연산이 가능함
+
+        // 자바스크립트는 기본적으로 유연한 규칙을 사용하기 때문에 문자열로 만들어진 숫자를 숫자로 인식함
+        // 다만 + 연산자는 문자열 연결 연산자로 먼저 인식되기 때문에 산술 연산이 되지 않음
+        a = "100";
+        b = "10";
+        c = a * b;
+        console.log(c); // 1000 출력
+
+        c = a / b;
+        console.log(c); // 10 출력
+
+        a = "10";
+        b = "3";
+        c = a % b;
+        console.log(c); // 1 출력
+
+        // NaN(Not a Number) : 자바스크립트에서 해당하는 데이터가 숫자인지 아닌지 확인하는 자바스크립트 예약어
+        // isNaN() : 해당하는 데이터를 숫자인지 아닌지 확인하는 함수
+            // true : 숫자가 아님, false : 숫자
+        a = "문자";
+        console.log(isNaN(a)); // 변수 a에 저장된 데이터가 숫자가 아님
+        b = 10;
+        console.log(isNaN(b)); // 변수 b에 저장된 데이터가 숫자임
+        c = "100";
+        console.log(isNaN(c)); // 변수 c에 저장된 데이터가 문자열형의 숫자임
+
+        // Infinity
+        // 자바스크립트에서 출력 가능한 가장 큰 숫자 이외의 숫자를 계산 시 출력하는 값
+        var num = 2;
+        var text = "";
+
+        while (num != Infinity) {
+            num = num * num;
+            text = text + num + "\n";
+        }
+
+        console.log(text);
+
+        // 16진수 표시
+        // 자바스크립트에서 숫자 앞에 0x 가 붙어 있을 경우 16진수 임
+        var x = 0xFF; // 16진수
+        var y = 255; // 10진수
+        console.log(x == y);
+
+        console.log("\n-----숫자 관련 함수-----\n");
+        // 숫자 관련 함수
+        // Number() : 숫자로 변환(공백문자 무시)
+        // parseInt() : 정수형 숫자로 변환(첫번째 숫자만 변환)
+        // parseFloat() : 실수형 숫자로 변환(첫번째 숫자만 변환)
+        console.log(Number(true)); // 1
+        console.log(Number(false)); // 0
+        console.log(Number("10")); // 10
+        console.log(Number("   10")); // 10
+        console.log(Number("10   ")); // 10
+        console.log(Number("10.33")); // 10.33
+        console.log(Number("10,33")); // NaN
+        console.log(Number("10 33")); // NaN
+        console.log(Number("문자")); // NaN
+
+        console.log("---------------");
+
+        // 숫자로 변환 시 해당 숫자가 실수일 경우에도 정수로 변환
+        console.log(parseInt("10")); // 숫자형 10
+        console.log(parseInt("10.33")); // 숫자형 정수 10
+        console.log(parseInt("10 20 30")); // 첫번째 숫자만 변환
+        console.log(parseInt("10 years")); // 첫번째 숫자만 변환
+        console.log(parseInt("years 10")); // 첫번째 데이터가 문자이기 때문에 변환 실패, NaN 출력
+
+        console.log("----------------");
+
+        // 숫자로 변환 시 해당 숫자가 실수일 경우 실수로 변환함
+        // 숫자로 변환 시 해당 숫가가 정수일 경우 정수로 변환
+        console.log(parseFloat("10")); // 숫자형 10
+        console.log(parseFloat("10.33")); // 숫자형 실수 10.33
+        console.log(parseFloat("10 20 30")); // 첫번째 숫자만 변환
+        console.log(parseFloat("10 years")); // 첫번째 숫자만 변환
+        console.log(parseFloat("years 10")); // 첫번째 데이터가 문자이기 때문에 변환 실패, NaN 출력
+
+
+        console.log("\n----- 문자열 타입 -----\n");
+        // 문자열형 : 일반적으로 사용하는 문자 혹은 문자열
+        // "" 혹은 '' 로 감싸여진 모든 표현할 수 있는 문자 및 숫자
+        // 공백 도 문자로 사용 됨
+        // " 로 시작 시 "로 끝나야함, ' 로 시작 시 ' 로 끝나야 함
+        // "" 내부에 ""을 사용할 수 없음, '' 내부에 ''을 사용할 수 없음
+        // "" 와 '' 는 서로 내부에서 사용할 수 있음
+        // 문자열과 문자열은 + 연산자로 서로 연산(연결을 뜻함)이 가능함
+        // 문자열과 다른 데이터 타입을 + 연산자로 서로 연산 시 모두 문자열로 변환하여 연산함
+        var txt = "문자열입니다.";
+        console.log(txt);
+
+        var txt1 = "동해물과";
+        var txt2 = "백두산이";
+        var txt3 = txt1 + txt2; // 문자열 + 문자열은 하나의 문자열
+        console.log(txt3);
+
+        var num = 10;
+        var txt = " 살 입니다.";
+        var txt3 = num + txt; // 숫자형이 문자열형으로 변환되어 문자열 10 + 문자열 '살 입니다' 가 됨
+        console.log(txt3); // "10 살 입니다." 로 출력 됨
+
+        var flag = true; // 논리형 변수 flag의 값 true
+        var txt = "문자입니다.";
+        var txt3 = flag + txt;
+        console.log(txt3);
+
+        console.log("----- 문자열 함수 -----");
+        // 문자열 타입에서 자주 사용하는 함수
+        // length : 해당 문자열의 길이를 출력
+        var txt = "abcdefghijklmnopqrstuvwxyz";
+        var size = txt.length;
+        console.log("변수 txt의 길이는 : " + size);
+
+        txt = "가나다라마바사아자차카타파하";
+        size = txt.length;
+        console.log("변수 txt의 글자 길이는 : " + size);
+
+        // 문제 1) 한글 입숨 사이트에서 2개의 문장을 생성하고 각 문장을 변수 a, b에 각각 대입한 후 각각의 글자의 길이를 출력하고, 변수 a + 변수 b의 값을 변수 c에 대입한 후 변수 c의 길이를 출력하시오
+        var a = "모든 국민은 직업선택의 자유를 가진다. 헌법개정은 국회재적의원 과반수 또는 대통령의 발의로 제안된다. 형사피의자 또는 형사피고인으로서 구금되었던 자가 법률이 정하는 불기소처분을 받거나 무죄판결을 받은 때에는 법률이 정하는 바에 의하여 국가에 정당한 보상을 청구할 수 있다";
+        var b = "사면·감형 및 복권에 관한 사항은 법률로 정한다. 의원을 제명하려면 국회재적의원 3분의 2 이상의 찬성이 있어야 한다. 국가유공자·상이군경 및 전몰군경의 유가족은 법률이 정하는 바에 의하여 우선적으로 근로의 기회를 부여받는다";
+        var c = a + b;
+        console.log("변수 a의 길이 : " + a.length);
+        console.log("변수 b의 길이 : " + b.length);
+        console.log("변수 c의 길이 : " + c.length);
+
+        // indexOf(검색할문자) : 해당 문자열에서 지정한 문자의 위치를 출력
+        // 앞에서부터 숫자를 카운트하여 지정한 문자가 처음 발견되는 위치를 알려 줌
+        // 지정한 문자가 검색되지 않을 경우 -1 이 출력 됨
+        var txt = "abcdefghijklmnopqrstuvwxyz";
+        var num = txt.indexOf("g");
+        console.log("g의 위치는 : " + num);
+
+        // 문제 2) 애국가 1절에서 '하느님' 단어의 위치를 찾아서 출력하세요
+        var song = "동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세. 무궁화 삼천리 화려강산 대한 사람, 대한으로 길이 보전하세.";
+        var size = song.indexOf("하느님");
+        console.log("하느님의 위치는 : " + size + "입니다.");
+
+
+        // 시작을 0에서부터 시작함
+        // lastIndexOf() : 해당 문자열에서 지정한 문자의 위치를 뒤에서 부터 카운트하여 출력
+        // 검색할 문자가 없을 경우 -1을 출력
+        var index = song.indexOf("대한");
+        var lastIndex = song.lastIndexOf("대한");
+        console.log("indexOf로 찾은 '대한'의 위치 : " + index);
+        console.log("lastIndexOf로 찾은 '대한'의 위치 : " + lastIndex);
+
+        console.log("-----------------");
+        // slice(start, end) : 문자열의 일부분을 출력
+        // 해당 문자열에서 start 위치에서 end 위치까지의 문자열을 출력함
+        // end 위치의 문자를 포함하지 않음
+        // 음수를 입력 시 문자열의 끝에서부터 위치를 계산하여 출력
+        // 매개변수를 1개만 입력 시 start 부분에서 문자열의 끝까지 출력
+        var str = "apple, banana, kiwi";
+        var res = str.slice(7, 13);
+
+        console.log("원본 문자열 : " + str);
+        console.log("잘라낸 문자열 : " + res);
+
+        res = str.slice(-12, -6);
+        console.log("음수를 입력하여 잘라낸 문자열 : " + res);
+
+        res = str.slice(7);
+        console.log("값을 1개만 입력하여 잘라낸 문자열 : " + res);
+
+        // substring(start, end) : 문자열의 일부분을 출력
+        // 해당 문자열에서 start 위치에서 end 위치까지의 문자열을 출력함
+        // end 위치의 문자를 출력하지 않음
+        // 음수값을 사용할 수 없음
+        // 매개변수를 1개만 사용 시 start 에서 문자열의 끝까지 출력
+        var str = "apple, banana, kiwi";
+        var res = str.substring(7, 13);
+        console.log("원본 문자열 : " + str);
+        console.log("substring으로 잘라낸 문자열 : " + res);
+
+        res = str.substring(7);
+        console.log("substring에서 매개변수를 1개만 사용하여 잘라낸 문자열 : " + res);
+
+        // substr(start, length) : 문자열의 일부분을 출력
+        // slice()와 거의 동일함
+        // 해당 문자열에서 start 위치에서 length 만큼의 글자를 출력
+        // 매개변수를 1개만 사용 시 start에서 문자열의 끝까지 출력
+        // 음수를 사용 시 문자열의 끝에서부터 계산
+        var str = "apple, banana, kiwi";
+        var res = str.substr(7, 6);
+        console.log("원본 문자열 : " + str);
+        console.log("substr로 잘라낸 문자열 : " + res);
+
+        res = str.substr(7);
+        console.log("substr에서 매개변수 1개 사용하여 출력 : " + res);
+
+        res = str.substr(-4);
+        console.log("substr에서 음수를 사용하여 출력 : " + res);
+
+        // replace(원본문자, 변경문자) : 지정한 문자열로 변경
+        // 해당 문자열에서 문자를 검색 후 지정한 문자로 변경
+        // 문자열의 처음부터 검색하여 발견되는 첫번째 문자를 변경
+        var str = "기초부터 고정형 웹까지";
+        var res = str.replace("고정", "반응");
+        console.log("원본 문자열 : " + str);
+        console.log("변경한 문자열 : " + res);
+
+
+        // trim() : 문자열의 양쪽 공백을 제거
+        var str = "     hello world!!     ";
+        var res = str.trim();
+        console.log("원본 문자열 : " + str);
+        console.log("원본 문자열의 길이 : " + str.length);
+        console.log("trim 사용 후 문자열 : " + res);
+        console.log("trim 사용 후 문자열의 길이 : " + res.length);
+
+
+        // split(분할문자) : 문자열을 분할하여 배열로 변환
+        // 문자열을 지정한 문자를 기준으로 문자열을 잘라서 배열로 변환함
+        var txt = "a,b,c,d,e,f";
+        var array = txt.split(",");
+        console.log("원본 문자열 : " + txt);
+        console.log("split 후 배열 0 번 index : " + array[0]);
+        console.log("split 후 배열 1 번 index : " + array[1]);
+        console.log("split 후 배열 2 번 index : " + array[2]);
+        console.log("split 후 배열 3 번 index : " + array[3]);
+        console.log("split 후 배열 4 번 index : " + array[4]);
+        console.log("split 후 배열 5 번 index : " + array[5]);
+        console.log(array);
+        
+
+        // 논리형(boolean) : 논리적으로 참(true), 거짓(false)을 판단하는 타입
+        // 다른 데이터 타입의 값을 논리형으로 표현하는 방식
+            // true : 숫자형 1 이상의 값, 문자열형에서 데이터가 있는 상태(" a")
+            // false : 숫자형 0 이하 - 값, 문자열형 "" 혹은 '', null, undefined, NaN
+        // Boolean(값 및 조건식) : 해당 값 혹은 조건식이 참인지 거짓인지 확인
+        var bool = Boolean(10 > 5);
+        console.log("10은 5보다 크다 : " + bool);
+
+        var result = 1; // true
+        console.log("숫자형 1은 논리형으로 : " + Boolean(result));
+        result = 0; // false
+        console.log("숫자형 0은 논리형으로 : " + Boolean(result));
+        result = 0.1; // true
+        console.log("숫자형 실수 0.1은 논리형으로 : " + Boolean(result));
+        result = -0.1; // true
+        console.log("숫자형 실수 -0.1은 논리형으로 : " + Boolean(result));
+        result = "문자"; // true
+        console.log("문자열형은 논리형으로 : " + Boolean(result));
+        result = ""; // false
+        console.log('문자열형 "" 은 논리형으로 : ' + Boolean(result));
+        result = null; // false
+        console.log("null 은 논리형으로 : " + Boolean(result));
+        result = undefined; // false
+        console.log("undefined 는 논리형으로 : " + Boolean(result));
+        result = NaN;
+        console.log("NaN은 논리형으로 : " + Boolean(result));
+
+        // null : 데이터가 존재하지 않는다는 의미의 데이터 타입(한번 이상 사용 후 데이터가 없는 상태)
+        // undefined : 데이터가 존재하지 않는다는 의미의 데이터 타입(처음부터 데이터가 없는 상태)
+
+        // 배열 : 변수와 형태가 비슷하지만 하나의 변수명으로 여러개의 데이터를 저장하는 타입(index 번호가 존재)
+
+        // 객체형 : 배열과 비슷한 형태로 하나의 변수명으로 여러개의 데이터를 저장하는 타입(key와 value 가 존재)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

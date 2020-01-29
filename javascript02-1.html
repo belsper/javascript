@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>자바스크립트 2일차 1번 파일</title>
+
+    <script>
+        // 배열
+        // 하나의 변수명으로 여러개의 데이터를 저장하는 방식의 데이터 타입
+        // [] 를 사용하며, 각 데이터의 구분을 , 로 함
+        // 각 데이터에 접근할 경우 index 번호를 사용하여 접근함
+        // index 번호는 0 부터 시작
+
+        // 사용법
+        // 선언
+        // var 배열이름 = [값1, 값2, 값3, 값4, ...]; // 배열 선언과 동시에 데이터 입력하기
+        // var 배열이름 = []; // 빈 배열 선언하기
+        // var 배열이름 = new Array(); // 빈 배열 선언하기
+        // var 배열이름; // 이렇게 하면 배열이 아니라 변수로 선언됨
+
+        // 데이터 사용
+        // 배열이름[index번호] = 데이터; // 배열의 지정한 index번호에 데이터를 저장, index 번호가 반드시 필요함
+        // 배열이름[index번호]; 지정한 index 번호에 저장된 데이터를 출력
+        
+
+        var car = "현대자동차"; // 변수
+        var arrCar = ["현대자동차", "기아자동차", "쉐보레", "르노삼성", "쌍용자동차"]; // 배열
+
+        console.log(car);
+        console.log(arrCar);
+
+        
+        var class1 = "601";
+        var class2 = "602";
+        var class3 = "603";
+        var class4 = "604";
+        var class5 = "605";
+
+        var arrClass = ["601", "602", "603", "604", "605"]; // 배열 선언과 동시에 데이터 입력
+        console.log(arrClass); // 전체 다 출력
+        arrClass[0] = "701"; // 해당 index 번호에 데이터 저장
+        arrClass[1] = "702";
+        arrClass[2] = "703";
+        console.log(arrClass);
+        console.log(arrClass[4]); // 해당 index 번호에 있는 데이터 출력
+
+        // 문제 3) 배열을 1개 생성하고, 데이터를 올해 자신의 버킷리스트 5개를 입력하여, 화면에 출력하는 프로그램을 생성하세요
+        // 배열이름 : bucketList
+        // 화면에 출력 시 각각의 인덱스 번호로 접근하여 출력
+        
+        // length : 지정한 배열의 길이를 출력
+        // 주의 사항 - index 번호는 0부터 시작, length는 1부터 시작
+
+        console.log("배열 arrClass의 길이 : " + arrClass.length);
+
+
+        // 배열에서 많이 사용되는 함수
+        // push(추가할데이터) : 해당 배열의 가장 마지막에 데이터를 추가
+        var fruits = ["바나나", "사과", "오렌지", "포도"];
+        console.log("원본 데이터");
+        console.log(fruits);
+        fruits.push("파인애플");
+        fruits.push("복숭아");
+        console.log("push 후 데이터");
+        console.log(fruits);
+
+        // pop() : 해당 배열의 가장 마지막에 있는 데이터를 삭제
+        console.log("원본 데이터");
+        console.log(fruits);
+        fruits.pop();
+        console.log("pop 후 데이터");
+        console.log(fruits);
+
+        // shift() : 해당 배열의 가장 앞에 있는 데이터를 삭제
+        console.log("원본 데이터");
+        console.log(fruits);
+        fruits.shift();
+        fruits.shift();
+        console.log("shift 후 데이터");
+        console.log(fruits);
+
+        // unshift(추가할데이터) : 해당 배열의 가장 앞에 데이터를 추가
+        console.log("원본 데이터");
+        console.log(fruits);
+        fruits.unshift("배");
+        console.log("unshift 후 데이터");
+        console.log(fruits);
+        
+
+        // concat() : 기존의 배열에 다른 배열을 합하기
+        // 기존의 배열에 다른 배열을 합하여 새배열을 생성
+        // 기존의 배열은 그대로 있음
+        // 사용법
+        // var 새배열명 = 기존배열1.concat(기존배열2);
+        var cars = ["아반테", "소나타", "그랜저"];
+        var comp = ["현대", "기아", "쌍용", "쉐보레", "르노삼성"];
+        var carComp = cars.concat(comp);
+        console.log(cars);
+        console.log(comp);
+        console.log(carComp);
+
+        // splice() : 배열의 지정한 위치에 데이터를 추가/삭제
+        // 사용법
+        // splice(index, 제거 요소 수) : 지정한 위치에서 지정한 개수의 데이터를 삭제함
+        console.log("원본 데이터");
+        console.log(carComp);
+        carComp.splice(3, 3); // index 번호 3에서 데이터 3개 삭제
+        console.log("splice 로 데이터 삭제");
+        console.log(carComp);
+
+        // splice(index, 제거 요소 수, 추가할 데이터1, 추가할 데이터2, ...) : 지정한 위치에서 지정한 개수의 데이터를 삭제하고, 지정한 데이터를 추가함
+        console.log("원본 데이터");
+        console.log(carComp);
+        carComp.splice(3, 0, "k3", "k5", "k7", "k9");
+        console.log("splice 로 데이터 추가");
+        console.log(carComp);
+
+        // sort() : 배열 내부의 데이터를 오름차순으로 정렬
+        // reverse() : 배열 내부의 데이터의 순서를 반대로 변경
+        console.log("원본 데이터");
+        console.log(carComp);
+        carComp.sort();
+        console.log("sort 후의 데이터 확인");
+        console.log(carComp);
+        carComp.reverse();
+        console.log("reverse 후의 데이터 확인");
+        console.log(carComp);
+
+        // 문제 4) 올해 하고싶은 일 5가지를 배열에 저장하고, 화면에 출력 후 해당 배열에 좋아하는 것 3가지를 입력하고 화면에 출력하세요
+        // 기존의 배열에서 3가지를 삭제하고 3개를 추가해야 함
+        // 방식은 2가지 : 1. 배열의 끝이나 앞쪽에 데이터를 삭제하고 추가
+        // 2. 지정한 위치의 데이터를 삭제하고 데이터를 추가
+
+        var list = ["리클라이너 구매", "침대 교체", "오토바이 구매", "NAS 구매", "로봇청소기 구매"];
+        console.log(list);
+        
+        // 1.
+        list.pop();
+        list.pop();
+        list.pop();
+        list.push("드라이브");
+        list.push("게임하기");
+        list.push("놀기");
+        console.log(list);
+
+        // 2.
+        list.splice(0, 3, "영화보기", "iot 기기 만들기", "수영");
+        console.log(list);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
