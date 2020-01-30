@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>자바스크립트 3일차 1번파일</title>
+
+    <script>
+        // 조건문
+        // 프로그램 작성 시 조건에 따라서 프로그램의 흐름을 바꾸는 문장
+        // 조건에 따라서 실행하는 소스코드가 달라지는 것
+
+        // if, switch ~ case 으로 크게 2가지로 나누어 짐
+
+        // if문은 if, if ~ else, if ~ else if ~ else 로 나누어 짐
+
+        // if
+        // 가장 기본적은 조건문
+        // 특정 조건을 확인하여 결과값이 논리적으로 true 이면, 아래 코드 블럭의 내용을 실행하고, false 이면 아래 코드 블럭의 내용을 실행하지 않는 형태의 조건문
+        // 주로 옵션이 추가되는 형태의 코드를 작성할 때 사용함
+
+        // 사용법
+        // if (조건문) {
+            // 조건이 true일때 실행할 코드 ...
+        // }
+
+        var a = 10;
+        if (a >= 5) {
+            console.log("변수 a는 숫자 5보다 큽니다.");
+        }
+        console.log("변수 a는 값은 " + a + "입니다.");
+
+        var money = 10000;
+        // var car = 1200;
+        var taxi = 6000;
+        var bab = 5000;
+
+        // money = money - car;
+        money = money - taxi;
+
+        if (money > 5000) {
+            console.log("군만두를 먹습니다.");
+        }
+
+        console.log("볶음밥을 먹습니다.");
+
+
+        // var state = true;
+
+        // if (state == false) {
+        //     console.log("정상적인 실행이 되지 않았습니다");
+        //     console.log("프로그램을 종료합니다.");
+        //     exit();
+        // }
+
+        // console.log("프로그램을 시작합니다.");
+
+        // if ~ else
+        // 조건을 확인하여 프로그램의 실행 방식을 변경할때 주로 사용함
+        // 조건문의 결과가 true 일 경우 바로 아래의 코드 블럭을 실행
+        // 조건문의 결과가 false 일 경우 else 문 아래의 코드 블럭을 실행
+        // 무조건 둘 중의 하나를 실행하는 형태임
+        // 사용법
+        // if (조건문) {
+            // 조건문의 결과가 true 일 경우 실행할 소스 코드...
+        // }
+        // else {
+            // 조건문의 결과가 false 일 경우 실행할 소스 코드...
+        // }
+
+        var bumock = true;
+
+        if (bumock == true) {
+            console.log("탕수육에 소스를 부어 먹습니다.");
+        }
+        else {
+            console.log("소스에 탕수육을 찍어 먹습니다.");
+        }
+
+        var weather = "비";
+
+        if (weather == "맑음") {
+            console.log("짜장면을 먹습니다.");
+        }
+        else {
+            console.log("짬뽕을 먹습니다.");
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
