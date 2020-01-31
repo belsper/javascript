@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>자바스크립트 4일차</title>
+
+    <script>
+        // if ~ else if ~ else
+        // 조건을 여러개를 사용하여 결과값이 true가 되는 부분을 실행하는 조건문
+        // if의 첫번째 조건문을 확인하여 결과값이 true이면, 바로 아래에 있는 실행코드를 실행하고, 만약 결과값이 false면, 두번째 조건문을 실행하여 true인지 false인지 확인함
+        // 위의 로직을 계속 실행하면서 다음 조건의 결과값을 확인함
+        // 만약 모든 조건을 만족하지 못하면 else 문을 실행 함
+        // else 문을 반드시 사용해야 하는 것은 아님
+
+        // 사용방법
+        // if (조건1) {
+            // 조건1이 true일 경우 실행할 코드
+        // } else if (조건 2) {
+            // 조건2가 true일 경우 실행할 코드
+        // } else if (조건 3) {
+            // 조건3이 true일 경우 실행할 코드
+        // }
+        // ...
+        // else {
+            // 위의 모든 조건이 만족하지 않을 경우 실행할 코드
+        // }
+
+        var score = 50;
+
+        if (score > 90) {
+            console.log("당신의 점수는 " + score + "점이고, 학점은 A 입니다.");
+        }
+        else if (score > 80) {
+            console.log("당신의 점수는 " + score + "점이고, 학점은 B 입니다.");
+        }
+        else if (score > 70) {
+            console.log("당신의 점수는 " + score + "점이고, 학점은 C 입니다.");
+        }
+        else if (score > 60) {
+            console.log("당신의 점수는 " + score + "점이고, 학점은 D 입니다.");
+        }
+        else {
+            console.log("당신의 점수는 " + score + "점이고, 학점은 F 입니다.");
+        }
+
+        console.log("---------------");
+        // else 을 사용하지 않은 if ~ else if 문
+        // if 문 단독으로 사용하는 것과 같이 옵션을 추가하는 형태로 사용하는 것이 가능함
+
+        var score = 87;
+        var level = "F";
+
+        if (score > 90) {
+            level = "A";
+            console.log("축하합니다.");
+        }
+        else if (score > 80) {
+            level = "B";
+            console.log("잘하셨습니다.");
+        }
+
+        console.log("당신의 점수는 " + score + "점이고, 학점은 " + level + "입니다.");
+
+        
+        // 문제 1 ) 위의 예제를 기반으로 하여 사용자의 점수에 따라서 성적을 화면에 출력하는 프로그램을 작성하세요
+        // 5점씩 계산해서 등급을 측정
+        // 100 ~ 96 : A+, 95 ~ 90 : A, 89 ~ 86 : B+, 85 ~ 80 : B,
+        // 60 점 이하는 F
+
+        console.log("-----문제1-----");
+        score = 94;
+
+        if (score > 95) {
+            console.log("점수 : " + score + "학점 : A+");
+        }
+        else if (score >= 90) {
+            console.log("점수 : " + score + "학점 : A");
+        }
+        else if (score > 85) {
+            console.log("점수 : " + score + "학점 : B+");
+        }
+        else if (score >= 80) {
+            console.log("점수 : " + score + "학점 : B");
+        }
+        else if (score > 75) {
+            console.log("점수 : " + score + "학점 : C+");
+        }
+        else if (score >= 70) {
+            console.log("점수 : " + score + "학점 : C");
+        }
+        else if (score > 65) {
+            console.log("점수 : " + score + "학점 : D+");
+        }
+        else if (score >= 60) {
+            console.log("점수 : " + score + "학점 : D");
+        }
+        else {
+            console.log("점수 : " + score + "학점 : F");
+        }
+
+        // 문제 2 ) 시간에 따라서 인사말이 다르게 출력되는 프로그램을 작성하세요
+        // 오전 : 12시 전까지, 오후 : 18시 전까지, 저녁 21시 전까지, 밤
+        console.log("-----문제2-----");
+        var time = 10;
+
+        if (time < 12) {
+            console.log("기분 좋은 아침입니다.");
+        }
+        else if (time >= 12 && time < 18) {
+            console.log("햇빛이 따스한 오후입니다.");
+        }
+        else if (time >= 18 && time < 21) {
+            console.log("즐거운 저녁입니다.");
+        }
+        else if (time >= 21 && time < 24) {
+            console.log("밤이 깊었습니다.");
+        }
+        else {
+            console.log("시간을 잘못 입력 하셨습니다.");
+        }
+
+
+        // switch ~ case
+        // if문과 같은 조건문
+        // if문은 기본적으로 범위를 설정하여 조건을 확인함
+        // switch ~ case 문은 조건식에 들어갈 값이 정해져 있을 때 사용
+        // default - if 문에서 사용하는 else 문과 비슷한 기능을 가지고 있음
+            // switch ~ case 문에서 조건식에 해당하는 값이 없을 경우 실행함
+            // 꼭 입력할 필요는 없음
+        // break : switch ~ case 문에서 break를 만나면 실행하던 코드 블럭에서 탈출함
+            // 만약 break를 입력하지 않으면 바로 아래에 있는 case 문을 추가로 실행하는 경우가 발생함
+        // 모든 switch ~ case 문은 if ~ else if ~ else 문으로 변환이 가능함
+
+        // 사용법
+        // switch (조건식) {
+            // case 조건식에 해당하는 값1 :
+            // 실행할 코드 ...
+            // break;
+
+            // case 조건식에 해당하는 값2 :
+            // 실행할 코드 ...
+            // break;
+
+            // case 조건식에 해당하는 값3 :
+            // 실행할 코드 ...
+            // break;
+
+            // ...
+
+            // default:
+            // 실행할 코드 ...
+            // break;
+        // }
+
+        var day = new Date().getDay();
+        // console.log(Date());
+        // var day = 6;
+
+        switch (day) {
+            case 1:
+            console.log("월요일 입니다.");
+            break;
+
+            case 2:
+            console.log("화요일 입니다.");
+            break;
+
+            case 3:
+            console.log("수요일 입니다.");
+            break;
+
+            case 4:
+            console.log("목요일 입니다.");
+            break;
+
+            case 5:
+            console.log("금요일 입니다.");
+            break;
+
+            // 범위 설정
+            case 0:
+            case 6:
+            console.log("주말 입니다.");
+            break;
+
+            // default:
+            // console.log("주말 입니다.");
+            // break;
+        }
+
+        // 현재 시간을 기준으로 오늘 요일을 숫자로 표현함
+        console.log("switch ~ case 를 else if 문으로 변환");
+        var day = new Date().getDay();
+
+        if (day == 1) {
+            console.log("월요일입니다.");
+        }
+        else if (day == 2) {
+            console.log("화요일입니다.");
+        }
+        else if (day == 3) {
+            console.log("수요일입니다.");
+        }
+        else if (day == 4) {
+            console.log("목요일입니다.");
+        }
+        else if (day == 5) {
+            console.log("금요일입니다.");
+        }
+        else {
+            console.log("주말입니다.");
+        }
+
+        // 중복 조건문
+        // 조건문은 다른 조건문과 겹쳐서 사용할 수 있음
+        var score = 73;
+
+        if (score > 90) {
+            if (score > 95) {
+                console.log("점수 : " + score + ", 등급 : A+");
+            }
+            else {
+                console.log("점수 : " + score + ", 등급 : A");
+            }
+        }
+        else if (score > 80) {
+            if (score > 85) {
+                console.log("점수 : " + score + ", 등급 : B+");
+            }
+            else {
+                console.log("점수 : " + score + ", 등급 : B");
+            }
+        }
+        else if (score > 70) {
+            if (score > 75) {
+                console.log("점수 : " + score + ", 등급 : C+");
+            }
+            else {
+                console.log("점수 : " + score + ", 등급 : C");
+            }
+        }
+        else if (score > 60) {
+            if (score > 65) {
+                console.log("점수 : " + score + ", 등급 : D+");
+            }
+            else {
+                console.log("점수 : " + score + ", 등급 : D");
+            }
+        }
+        else {
+            console.log("점수 : " + score + ", 등급 : F");
+        }
+
+        // 문제 3) 점심시간에 중화요리 집에 가서 먹을 음식을 선택하는 프로그램을 작성하세요
+        // 첫번째 if문 : else if 을 사용하여 음식 3가지를 선택
+            // else 문 꼭 사용
+        // 2번째 if문 : 사이드 메뉴 주문 여부 확인(군만두)
+        // 첫번째와 두번째 if 문에서 변수로 주문을 받음
+        // 마지막에 주문 목록을 화면에 출력
+        console.log("-----문제3-----");
+        var menuSelect = "짬뽕";
+        var sideSelect = false
+        var menu;
+        var side;
+
+        if (menuSelect == "짬뽕") {
+            menu = "짬뽕";
+        }
+        else if (menuSelect == "간자장") {
+            menu = "간자장";
+        }
+        else if (menuSelect == "볶음밥") {
+            menu = "볶음밥";
+        }
+        else {
+            menu = "자장면";
+        }
+
+        if (sideSelect == true) {
+            side = "군만두 주세요";
+        }
+        else {
+            side = "없습니다";
+        }
+
+        console.log("주 메뉴는 " + menu + "이고, 사이드 메뉴는 " + side);
+
+        // 문제 4) 문제 3번과 동일한 문제이나 중복 if문을 사용하여 한번에 사이드 메뉴와 주 메뉴를 선택하여 화면에 출력
+        console.log("-----문제4-----");
+        var menuSelect = "볶음밥";
+        var sideSelect = true
+        var menu;
+        var side;
+
+        if (sideSelect == true) {
+            if (menuSelect == "짬뽕") {
+                menu = "짬뽕";
+            }
+            else if (menuSelect == "간자장") {
+                menu = "간자장";
+            }
+            else if (menuSelect == "볶음밥") {
+                menu = "볶음밥";
+            }
+            else {
+                menu = "자장면";
+            }
+
+            side = "군만두 주세요";
+        }
+        else {
+            if (menuSelect == "짬뽕") {
+                menu = "짬뽕";
+            }
+            else if (menuSelect == "간자장") {
+                menu = "간자장";
+            }
+            else if (menuSelect == "볶음밥") {
+                menu = "볶음밥";
+            }
+            else {
+                menu = "자장면";
+            }
+
+            side = "없습니다.";
+        }
+
+        console.log("주 메뉴는 " + menu + "이고, 사이드 메뉴는 " + side);
+
+        // 문제 5) 성적표 출력하기
+        // 다중 if문을 사용하여 성적표 출력
+
+        // prompt() : 사용자의 입력을 받는 자바스크립트 함수
+            // 입력받은 데이터를 문자열로 받음
+            // 숫자로 사용하려면 변환이 필요함 (Number(), parseInt(), parseFloat())
+        var score = prompt("점수를 입력하세요 : "); // 입력된 데이터를 문자열로 받아옴
+        score = Number(score); // 숫자 타입으로 변환됨
+        var level;
+
+        // 사용자가 입력한 점수가 0 ~ 100 점일 경우에만 아래의 점수 계산 실행
+        // 0보다 작거나 혹은 100 보다 클 경우 오류 메시지를 출력
+
+        if (score < 0 || score > 100) {
+            console.log("잘못된 데이터가 입력되었습니다.");
+            score = 0;
+        }
+
+        if (score > 90) {
+            if (score > 95) {
+                level = "A+";
+            }
+            else {
+                level = "A";
+            }
+        }
+        else if (score > 80) {
+            if (score > 85) {
+                level = "B+";
+            }
+            else {
+                level = "B";
+            }
+        }
+        else if (score > 70) {
+            if (score > 75) {
+                level = "C+";
+            }
+            else {
+                level = "C";
+            }
+        }
+        else if (score > 60) {
+            if (score > 65) {
+                level = "D+";
+            }
+            else {
+                level = "D";
+            }
+        }
+        else {
+            level = "F";
+        }
+
+        console.log("점수 : " + score + ", 등급 : " + level);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
