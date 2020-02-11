@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>제이쿼리 2일차 2번파일</title>
+
+    <!-- jquery 라이브러리 파일이 먼저 로딩이 되어야 다른 파일에서 jquery 문법을 사용할 수 있음 -->
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script src="./js/jquery.color.plus-names-2.1.2.js"></script>
+
+    <script src="./js/jquery02-2.js"></script>
+</head>
+<body>
+    <div id="div01">
+        <p id="div01p1">원본 문자열</p>
+        
+        <button id="div01Btn1">클릭 시 prepend() 동작, 글자에 추가</button>
+        <button id="div01Btn2">클릭 시 append() 동작, 글자에 추가</button>
+
+        <br><br>
+
+        <ol id="div01ol1">
+            <li>리스트 아이템 1</li>
+            <li>리스트 아이템 2</li>
+            <li>리스트 아이템 3</li>
+        </ol>
+
+        <button id="div01Btn3">클릭 시 prepend() 동작, 리스트에 추가</button>
+        <button id="div01Btn4">클릭 시 append() 동작, 리스트에 추가</button>
+
+        <br><br>
+
+        <img id="div01img1" src="./images/001.jpg" alt="" style="width: 200px; height: 200px;"><br><br>
+
+        <button id="div01Btn5">클릭 시 before() 동작</button>
+        <button id="div01Btn6">클릭 시 after() 동작</button>
+
+    </div>
+
+    <br><hr><br>
+
+    <div id="div02">
+        <div id="div02div1" style="height: 200px; width: 400px; border: 1px solid black; background-color: cadetblue;">
+            <h3>버튼 클릭 시 삭제될 h3태그</h3>
+            <p>버튼 클릭 시 삭제될 첫번째 p태그</p>
+            <p>버튼 클릭 시 삭제될 두번째 p태그</p>
+        </div>
+
+        <button id="div02Btn1">클릭 시 remove() 실행</button>
+
+        <br><br>
+
+        <div id="div02div2" style="height: 200px; width: 400px; border: 1px solid black; background-color: cadetblue;">
+            <h3>버튼 클릭 시 삭제될 h3태그</h3>
+            <p>버튼 클릭 시 삭제될 첫번째 p태그</p>
+            <p>버튼 클릭 시 삭제될 두번째 p태그</p>
+        </div>
+
+        <button id="div02Btn2">클릭 시 empty() 실행</button>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
