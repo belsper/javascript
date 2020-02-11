@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>자바스크립트 7일차 4번</title>
+
+    <!-- jquery 사용하기 -->
+    <!-- 자바스크립트를 쉽게 사용할 수 있도록 개발된 자바스크립트 라이브러리임 -->
+    <!-- 기본 자바스크립트 문법으로 구성되어 있으며, jquery와 자바스크립트의 문법은 동일함 -->
+    <!-- 사용 시 jquery 파일을 로드해서 써야함 -->
+    <!-- jquery 사용 시 jquery 라이브러리 파일이 미리 로딩되어 있어야 함 -->
+
+    <!-- 설치 -->
+    <!-- 1. jquery 파일 다운로드 방식 -->
+    <script src="./js/jquery-3.4.1.js"></script>
+    <!-- 2. 외부 서버에서 jquery 파일을 로드 -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+
+
+    <script>
+        // jquery 사용법
+        // 선택자는 CSS 선택자를 그대로 사용함
+        // 선택자는 태그 선택자, id, class 등 모든 CSS 선택자를 사용할 수 있음
+        // 액션 부분은 jquery 고유의 함수로 이루어져 있음
+        // 참고 사이트
+        // https://api.jquery.com/
+
+        // $(선택자).액션();
+
+        // jquery를 이용하여 html이 모두 로드 완료 후 자바스크립트 실행
+        $(document).ready(function() {
+            // html 태그가 모두 로딩된 후 실행할 자바스크립트 코드
+            $("#btn02").click(function() {
+                alert("버튼 2 클릭")
+            });
+
+            $("#btn02").on("mouseenter", function() {
+                alert("버튼 2에 마우스 포인터 들어옴");
+            });
+
+            $("#btn02").on("mouseleave", function() {
+                alert("버튼 2에서 마우스 포인터 나감");
+            });
+
+
+            $("#btn03").click(function() {
+                alert("click()로 이벤트 등록");
+            });
+
+            $("#btn04").on("click", function() {
+                $("#div01").on("click", function() {
+                    alert("on() 을 사용하여 div01에 click 이벤트 등록");
+                });
+            });
+
+            $("#btn05").on("click", function() {
+                $("#div01").one("contextmenu", function() {
+                    alert("on() 을 사용하여 div01에 contextmenu 이벤트 등록");
+                });
+            });
+
+            $("#btn06").on("click", function() {
+                $("#div01").off("click");
+            });
+
+        // 제이쿼리를 이용하여 이벤트 등록 시 이벤트 리스너 사용하기
+        // 제이쿼리의 이벤트 등록 시 예전에는 이벤트 함수를 직접 사용했음
+        // 현재는 on()함수를 사용하여 이벤트 리스너에 이벤트를 등록시켜 사용함
+
+        // on(이벤트명, 실행코드) : 자바스크립트 이벤트 리스너에 해당 이벤트를 등록함
+        // off(이벤트명) : 등록된 이벤트를 삭제함
+        // one(이벤트명, 실행코드) : 자바스크립트 이벤트 리스너에 1회용 이벤트를 등록함
+        
+
+        // jquery 페이드 인 효과
+        // fadeIn() : 지정한 태그에 fadeIn 효과를 부여함
+        // fadeOut() : 지정한 태그에 fadeOut 효과를 부여함
+        // fadeToggle() : 지정한 태그에 fadeIn과 fadeOut 효과를 한번씩 돌아가며 부여함
+        // fadeTo() : 지정한 태그에 fadeIn, fadeOut 효과에 대한 시간 설정이 가능함
+
+            $("#div02-btn1").on("click", function() {
+                $("#div02-1").fadeIn();
+                $("#div02-2").fadeIn("slow");
+                $("#div02-3").fadeIn(3000);
+            });
+
+            $("#div02-btn2").on("click", function() {
+                $("#div02-1").fadeOut(3000);
+                $("#div02-2").fadeOut("slow");
+                $("#div02-3").fadeOut();
+            });
+
+            $("#div02-btn3").on("click", function() {
+                $("#div02-1").fadeToggle();
+                $("#div02-2").fadeToggle("slow");
+                $("#div02-3").fadeToggle(3000);
+            });
+
+            $("#div02-btn4").on("click", function() {
+                $("#div02-1").fadeTo(3000, 0.15);
+                $("#div02-2").fadeTo(3000, 0.4);
+                $("#div02-3").fadeTo(3000, 0.7);
+            });
+
+        });
+    </script>
+    
+    <style>
+        .class02 {
+            width: 100px;
+            height: 100px;
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+    <button id="btn01">클릭하세요</button>
+    <br><br>
+    <button id="btn02" style="width: 100px; height: 50px;">버튼 2</button>
+
+    <br><hr><br>
+
+    <div id="div01" style="background-color: crimson; width: 200px; height: 200px; border: 1px solid black;"></div>
+    <br>
+    <button id="btn03">click()을 이용한 이벤트</button>
+    <button id="btn04">on()을 이용한 이벤트</button>
+    <button id="btn05">one()을 이용한 1회용 이벤트</button>
+    <button id="btn06">off()를 이용하여 이벤트 삭제</button>
+
+    <br><hr><br>
+
+    <div id="div02">
+        <button id="div02-btn1">클릭 시 fadeIn 효과</button>
+        <button id="div02-btn2">클릭 시 fadeOut 효과</button>
+        <button id="div02-btn3">클릭 시 fadeToggle 효과</button>
+        <button id="div02-btn4">클릭 시 fadeTo 효과</button>
+        <div id="div02-1" class="class02" style="background-color: red;"></div>
+        <div id="div02-2" class="class02" style="background-color: green;"></div>
+        <div id="div02-3" class="class02" style="background-color: blue;"></div>
+    </div>
+
+    <script>
+        // $()를 사용하면 jquery를 사용한다는 의미
+        $("#btn01").click(function() {
+            alert("클릭했습니다.");
+        });
+
+        $("#btn01").contextmenu(function() {
+            alert("마우스 오른쪽 버튼을 클릭했습니다.");
+        });
+    </script>
+</body>
+</html>

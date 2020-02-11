@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>자바스크립트 7일차</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        // 자바스크립트 이벤트
+        // 웹 브라우저나 사용자가 행하는 어떠한 동작
+        // 참고 사이트
+        // https://developer.mozilla.org/en-US/docs/Web/Events
+        
+        // 웹 브라우저 동작 이벤트
+            // 해당 페이지가 동작하는 것에 반응하는 이벤트
+        // load : 해당 페이지가 열렸을 때 발생
+        // focus : 해당 html 태그가 포커스가 주어졌을 때
+        // blur : 해당 html 태그에서 포커스가 다른 곳으로 이동했을 경우
+        // resize : 해당 페이지의 크기가 변경 되었을 경우
+        // scroll : 해당 페이지의 스크롤 위치가 변경 되었을 경우
+
+        // 마우스 이벤트
+            // 마우스 동작 시 발생하는 이벤트
+        // click : 사용자가 html 태그를 마우스로 클릭 시 발생
+        // dblclick : 사용자가 html 태그를 마우스로 더블 클릭 시 발생
+        // contextmenu : 사용자가 마우스의 오른쪽 버튼을 클릭 시 발생
+        // mousedown : 사용자가 html 태그를 마우스로 클릭(마우스가 눌러지는 순간) 시 발생
+        // mouseup : 사용자가 html 태그를 마우스로 클릭 후 발생(마우스 버튼을 눌렀다가 때는 순간)
+        // mousemove : 사용자가 마우스를 움직일 경우 발생(마우스 포인터가 이동했을 경우)
+        // mouseover : 사용자가 html 태그 위로 마우스 포인터를 이동했을 경우 발생
+        // mouseout : 사용자가 html 태그 위에 있는 마우스 포인터를 html 태그 밖으로 이동했을 경우 발생
+
+        // 키보드 이벤트
+            // 키보드 동작 시 발생하는 이벤트
+        // keydown : 사용자가 키보드의 키를 누를 경우 발생
+        // keyup : 사용자가 키보드의 눌러진 키에서 손을 땠을 경우 발생
+        // keypress : 사용자가 키보드의 키를 계속 누르고 있을 경우 발생
+
+        // html에 자바스크립트 이벤트 설정 방식
+        // 1. inline 방식
+            // html 태그에 직접 이벤트를 설정
+        // 2. 자바스크립트의 html dom 객체를 불러와서 사용하는 방법
+            // head 태그나 body 태그 가장 아래에 자바스크립트 코드로 이벤트를 설정하는 방식
+            // 자바스크립트의 html dom 객체를 이용하여 지정한 html 태그를 불러와서 이벤트를 설정
+        // 3. jquery를 이용하여 html dom 객체를 불러와서 사용하는 방법
+
+    </script>
+</head>
+<body>
+    <button onclick="alert('클릭했습니다.');">클릭 했을 때 이벤트 발생</button>
+
+    <br><hr><br>
+
+    <div style="width: 200px; height: 200px; background-color: blueviolet;" onmouseover="alert('마우스 포인터가 올라갔습니다.');" onmouseout="alert('마우스 포인터가 div에서 나갔습니다.');">
+    </div>
+
+    <br><hr><br>
+
+    <div id="div01" style="width: 200px; height: 200px; background-color: blueviolet;"></div>
+    <br>
+
+    <button id="btnHide">클릭 시 div 숨김</button>
+    <button id="btnShow">클릭 시 숨겨진 div 출력</button>
+
+    <br><hr><br>
+
+    <button id="btn01">클릭 시 alert창 출력</button>
+    <div>
+        <img id="img01" src="./passport.jpg" alt="">
+    </div>
+
+    <br><hr><br>
+
+    <h3>jquery를 이용한 이벤트 설정</h3>
+    <button id="jqueryBtn01">jQuery를 이용한 이벤트 설정</button>
+
+    <script>
+        // html dom객체를 이용하여 html id의 값이 div01인 태그를 선택
+        // 선택된 html 태그를 자바스크립트 변수에 대입함
+        var div01 = document.querySelector("#div01");
+        // id가 btnHide인 태그를 선택하여 변수 btnHide에 대입
+        var btnHide = document.querySelector("#btnHide");
+        // id가 btnShow인 태그를 선택하여 변수 btnShow에 대입
+        var btnShow = document.querySelector("#btnShow");
+
+        // 익명함수 : 1회용 함수, 이름이 없어서 다른 곳에서 호출이 불가능함
+        btnHide.onclick = function() {
+            // id가 div01인 태그의 css 속성 중 display의 값을 none으로 변경
+            div01.style.display = "none";
+        }
+
+        btnShow.onclick = function() {
+            // id가 div01인 태그의 css 속성 중 display의 값을 block으로 변경
+            div01.style.display = "block";
+        }
+
+        // 하나의 html 태그에 여러개의 이벤트 설정이 가능함
+        var img01 = document.querySelector("#img01");
+        var btn01 = document.querySelector("#btn01");
+        
+        img01.onclick = function() {
+            alert("이미지를 클릭했습니다.");
+        }
+
+        img01.oncontextmenu = function() {
+            alert("이미지를 마우스 오른쪽 버튼으로 클릭했습니다.");
+        }
+
+        img01.onmouseover = function() {
+            alert("마우스 포인터가 이미지 위에 들어갔습니다.");
+        }
+
+        img01.onmouseout = function() {
+            alert("마우스 포인터가 이미지 위에서 나갔습니다.");
+        }
+
+        btn01.ondblclick = function() {
+            alert("버튼을 더블 클릭 했습니다.");
+        };
+
+        // 미리 생성한 함수를 이벤트에 등록이 가능함
+        // 이벤트 등록 시 미리 생성한 함수의 이름만 입력
+        function add() {
+            a = 10;
+            b = 20;
+            alert(a + b);
+        }
+
+        btn01.onmouseup = add;
+
+        // jquery를 이용한 이벤트 설정하기
+        // $() 형태를 사용 시 jquery를 사용한다는 의미임
+        $("#jqueryBtn01").on("click", function() {
+            alert("jquery를 이용하여 클릭 이벤트 설정");
+        });
+
+        $("#jqueryBtn01").on("contextmenu", function() {
+            alert("jquery를 이용하여 2번째 이벤트 설정");
+        });
+
+        // jquery를 이용하여 이미 생성된 함수를 이벤트에 등록
+        function mouseEvents() {
+            alert("3번째 이벤트 설정");
+        }
+
+        $("#jqueryBtn01").on("mouseout", mouseEvents);
+    </script>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>제이쿼리 1일차</title>
+
+    <link rel="stylesheet" href="./style/jquery01.css">
+
+    <script src="./js/jquery-3.4.1.js"></script>
+    <!-- jquery 에서 color 플러그인 추가 -->
+    <!-- https://github.com/jquery/jquery-color -->
+    <!-- <script src="./js/jquery.color-2.1.2.js"></script> -->
+    <script src="./js/jquery.color.plus-names-2.1.2.js"></script>
+
+    <script src="./js/jquery01.js"></script>
+</head>
+<body>
+    <div id="div01">
+
+        <p id="div01p">아래 버튼 클릭 시 숨겨졌다 보였다할 글자</p>
+
+        <button id="btnHide">클릭 시 숨김</button>
+        <button id="btnShow">클릭 시 보임</button>
+        <button id="btnToggle">클릭 시 toggle</button>
+    </div>
+
+    <br><hr><br>
+
+    <div id="div02">
+        <div id="div02flip1" class="div02box">클릭</div>
+        <div id="div02panel1" class="div02box">확장 될 영역</div>
+        <br>
+        <div id="div02flip2" class="div02box">클릭</div>
+        <div id="div02panel2" class="div02box">축소 될 영역</div>
+        <br>
+        <div id="div02flip3" class="div02box">클릭</div>
+        <div id="div02panel3" class="div02box">확장/축소 될 영역</div>
+    </div>
+
+    <br><hr><br>
+
+    <div id="div03">
+        <button id="div03btn1">클릭 시 애니메이션 동작</button>
+        <br><br>
+
+        <div id="div03div"></div>
+    </div>
+
+    <br><hr><br>
+
+    <div id="div04">
+        <button id="div04btn1">클릭 시 효과 멈춤</button>
+        <button id="div04btn2">클릭 시 fade 효과 멈춤</button>
+        <button id="div04btn3">클릭 시 animate 효과 멈춤</button>
+        <br><br>
+        <div id="div04flip" class="div04box">클릭 시 슬라이드</div>
+        <div id="div04panel" class="div04box">확장될 영역</div>
+        <br>
+        <div id="div04div1"></div>
+        <br>
+        <div id="div04div2"></div>
+
+        <br><br>
+        <div style="margin-top: 300px;">
+            <button id="div04btn4">클릭 시 멈춤</button>
+            <br><br>
+            <div id="div04div3"></div>
+        </div>
+    </div>
+
+    <br><hr><br>
+
+    <div id="div05" style="margin-top: 250px;">
+        <button id="div05btn1">콜백함수 미사용</button>
+        <button id="div05btn2">콜백함수 사용</button>
+
+        <h3>버튼 클릭 시 숨겨질 글자</h3>
+    </div>
+
+    <br><hr><br>
+
+    <div id="div06">
+        <button id="div06btn">체인 동작</button>
+        <h3>제이쿼리 체인 기능 사용</h3>
+    </div>
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>자바스크립트 7일차 1번 파일</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        // html dom 객체를 사용하여 html을 검색 시 지정한 html 태그가 검색되지 않으면 null 을 반환함
+        var btn01 = document.querySelector("#btn01");
+
+        // 오류 발생
+        // id가 btn01인 html 태그를 자바스크립트에서 검색 시 검색이 되지 않기 때문에 오류가 발생함
+        // html, css, javascript는 위에서 아래로 한라인씩 실행함
+        // head 태그가 body 태그보다 먼저 실행되기 때문에 head에 자바스크립트를 입력하여 html 태그를 검색 시 그 시점에는 body 태그가 실행되지 않았기 때문에 html 태그는 하나도 존재하지 않음
+
+        // btn01.onclick = function() {
+        //     alert("클릭했습니다.");
+        // };
+        
+
+        // 문제 해결 방법
+        // 1. body 태그 가장 아래에 자바스크립트 코드를 입력
+        // 2. 웹 페이지 이벤트 load 이벤트를 이용
+            // 2.1 load 이벤트 사용
+                // 기본 load 이벤트를 사용하여 body의 모든 리소스가 로드된 후 자바스크립트가 동작하도록 함
+                // 모든 리소스가 로드된 이후에 자바스크립트가 동작되므로 만약 고용량 이미지나, 동영상등 고용량 미디어 파일이 있을 경우 이 미디어 파일이 로드되기 전까지 자바스크립트 코드가 동작하지 않는 단점이 있음
+                // 오래전부터 존재하던 방식이기 때문에 IE8 이하에서도 정상적으로 동작됨
+                
+                // 사용법
+                // window.onload = function() {
+                    // 자바스크립트 코드
+                // }
+
+                // window.addEventListener("load", function() {
+                    // 자바스크립트 코드
+                // })
+
+                // window.onload = function() {
+                //     var btnLoadEvent = document.querySelector("#btn01");
+
+                //     btnLoadEvent.oncontextmenu = function() {
+                //         alert("window.load 이벤트를 사용");
+                //     };
+                // };
+
+                window.addEventListener("load", function() {
+                    var btnLoadEvent = document.querySelector("#btn01");
+
+                    btnLoadEvent.oncontextmenu = function() {
+                        alert("window.load 이벤트를 사용");
+                    };
+                });
+            // 2.2 DOMContentLoaded 사용
+                // DOMContentLoaded 사용 시 body 태그의 html 태그가 모두 로딩된 이후 자바스크립트 코드를 실행함
+                // onload 이벤트보다 동작 시점이 더 빠름
+                // IE 8 이하 버전에서 동작되지 않음
+                window.addEventListener("DOMContentLoaded", function() {
+                    var btnContentLoad = document.querySelector("#btn01");
+
+                    btnContentLoad.onmouseover = function() {
+                        alert("DOMContentLoaded 이벤트를 사용");
+                    };
+                });
+
+        // 3. jquery의 ready 함수를 사용
+        // 자바스크립트의 DOMContentLoaded와 같이 html 태그의 로드가 완료 시 자바스크립트가 동작 됨
+        // 단점은 ready 함수를 사용하기 위해서는 jquery를 로드 해서 사용해야 함
+        $(document).ready(function() {
+            $("#btn01").on("mouseout", function() {
+                alert("jquery를 이용한 이벤트 설정");
+            });
+        });
+    </script>
+</head>
+<body>
+    <h3>자바스크립트의 실행 순서에 따른 동작</h3>
+    <button id="btn01">클릭 시 알림창 출력</button>
+
+    <script>
+        var btn01 = document.querySelector("#btn01");
+
+        btn01.onclick = function() {
+            alert("body 태그 가장 아래에 자바스크립트 코드 입력");
+        };
+    </script>
+</body>
+</html>
