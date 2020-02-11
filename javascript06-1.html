@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>자바스크립트 6일차 1번파일</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+
+    <script>
+        // 함수 : 특정한 기능을 수행하기 위한 코드의 모음
+
+        // function funcName(val1, val2) {
+        //     // 함수 호출 시 실행될 코드
+        //     alert(val1 + val2);
+        // }
+
+        // funcName(100, 200); // 함수의 원형 모양에 맞게 적어줘야 함
+
+        // 기본형 함수 / 함수 종류 1번
+        function cleaningStart() {
+            console.log("청소를 시작합니다.");
+        }
+
+        function cleaningEnd() {
+            console.log("청소를 종료합니다.");
+        }
+
+        function cleaning() {
+            console.log("청소 중입니다.");
+        }
+
+        cleaningStart();
+        cleaning();
+        cleaningEnd();
+
+        // 함수 종류 2번으로 변환(매개변수 O, 반환값 X)
+        // console.log("물걸래를 가지고 청소를 시작합니다.")
+
+        // 프로그램은 크게 나누었을때..
+        // 변수, 함수
+        // 데이터 타입(숫자, 문자, 논리, undefined)
+            // 배열, 객체
+        // 제어문(if ~ else if), 반복문
+
+        // dom 객체 (자바스크립트로 html, css 컨트롤)
+        // jquery
+            // 자바스크립트를 쉽게 사용하기위한 라이브러리
+            // jquery 파일을 다운받아 사용
+
+        // jquery를 이용하여 버튼 클릭 이벤트 설정
+        // 익명함수 : 함수이지만 함수명이 없는 함수, 1회용 함수
+        $(document).ready(function() {
+            $("#hide").on("click", function() {
+                $("h1").hide();
+            });
+
+            $("#show").on("click", function() {
+                $("h1").show();
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <h1>아래 버튼 클릭 시 숨겨졌다가 보여지는 글자</h1>
+    <button id="hide">클릭 시 글자 숨겨짐</button>
+    <button id="show">클릭 시 글자 보여짐</button>
+</body>
+</html>

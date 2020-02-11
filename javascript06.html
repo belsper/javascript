@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>자바스크립트 6일차</title>
+
+    <script>
+        // 함수
+
+        // 함수를 선언 시 메모리에 해당 함수가 등록될 뿐, 실행되지는 않음
+        // 실행은 해당 함수를 호출 시 실행됨
+        // function add() {
+        //     var a = 10;
+        //     var b = 20;
+        //     console.log(a + b);
+        // }
+
+        // function sub() {
+        //     var a = 10;
+        //     var b = 5;
+        //     console.log(a - b);
+        // }
+
+        // function multi() {
+        //     var a = 10;
+        //     var b = 20;
+        //     console.log(a * b);
+        // }
+
+        // function div() {
+        //     var a = 10;
+        //     var b = 3;
+        //     console.log(a / b);
+        // }
+
+        // function add1(a, b) {
+        //     console.log(a + b);
+        // }
+
+        // // 함수는 변수와 달리 사용 시 함수명 뒤에 반드시 ()가 붙음
+        // // 함수의 원형에 매개변수가 있을 경우 반드시 매개변수도 같이 사용해야 함수가 실행이 됨
+        // add(); // 함수 호출
+        // sub();
+        // multi();
+        // div();
+
+        // // add1(); // 함수의 원형에 매개변수가 있으나 함수 호출 시 매개변수를 입력하지 않아서 오류가 발생함
+        // add1(10, 20);
+
+        
+        // // 함수의 형태 4가지
+        // // 1. 매개변수와 반환값이 모두 없는 함수
+        //     // 출력 값이 늘 동일함, 연산을 위한 변수가 모두 해당 함수 내에서 선언되고 사용됨
+        // // 사용법 선언
+        // // function aaa() {
+        // //     실행될 코드...
+        // //     결과값 출력
+        // // }
+
+        // // 2. 매개변수는 존재하고, 반환값이 없는 함수
+        //     // 매개변수로 인하여 출력값이 변동됨, 연산을 위한 변수값을 외부에서 받아옴
+        //     // function bbb(a, b, c) { // a = 10, b : = 5,c = 3X
+        //     //     실행될 코드
+        //     //     결과값출력
+        //     // }
+
+        // // 3. 매개변수는 없고, 반환값이 존재하는 함수
+        //     // 출력 값이 늘 동일함, 연산을 위한 변수가 모두 해당 함수내에서 선언되고 사용됨, 결과값을 외부로 돌려주어 해당 결과값을 다른 곳에서 활용할 수 있음
+        //     // function ccc() {
+        //     //     실행할 코드...;
+        //     //     return 결과값 출력;
+        //     // }
+        // // 4. 매개변수와 반환값이 모두 존재하는 함수
+        //     // 매개변수로 인하여 출력값이 변동되고, 결과값을 외부로 돌려주어 해당 결과값을 다른 곳에서 활용할 수 있음
+        //     // function ddd(a, b) {
+        //     //     실행할 코드...
+        //     //     return 결과값 출력;
+        //     // }
+
+        //     // 1. 번 방식으로 만든 함수
+        //     function multi1() {
+        //         var a = 20;
+        //         var b = 20;
+        //         console.log(a * b);
+        //     }
+
+        //     // 2번 방식으로 만든 함수
+        //     // 함수 내부에 var a = 10, var b = 20를 선언한 것과 동일한 효과를 가지고 있음
+        //     // 해당 함수를 실행 시 매개변수의 값을 변경하면 결과값도 달라지게 됨
+        //     function multi2(a, b) {
+        //         console.log(a * b);
+        //     }
+
+        //     // 3번 방식으로 만든 함수
+        //     // 해당 함수의 결과값을 함수를 호출한 시점으로 반환함
+        //     // 해당 함수를 실행 후 그 결과값을 다른 곳에서 사용하기 위해서 사용
+        //     function multi3() {
+        //         var a = 10;
+        //         var b = 20;
+        //         return a * b; // 결과값을 함수 호출 시점으로 반환
+        //     }
+
+        //     // 4번 방식으로 만든 함수
+        //     // 매개 변수를 통해서 데이터를 매번 다르게 입력받아 연산 결과를 다르게 출력하고 그 결과를 해당 함수를 호출한 시점으로 반환하여 그 결과값을 다른 소스에서 사용하도록 함
+        //     function multi4(a, b) {
+        //         return a * b; // 결과값을 함수 호출 시점으로 반환
+        //     }
+
+        //     multi1(); // 1번 방식 함수 호출
+
+        //     multi2(10, 20); // 2번 방식 함수 호출
+
+        //     var result = multi3(); // 3번 방식 함수 호출
+        //     // var result = 300;
+        //     console.log(result);
+
+        //     result = multi4(10, 20); // 4번 방식 함수 호출
+        //     console.log(result);
+
+            
+        //     // 문제 1) 사칙 연산(+,-,*,/)을 매개변수와 반환값이 없는 형태로 함수를 생성하고 호출하여 화면에 출력하세요
+        //     // 매개변수와 반환값이 없는 형태의 함수
+        //     console.log("----- 문제 1 -----");
+        //     function testAdd1() {
+        //         var a = 10;
+        //         var b = 20;
+        //         var c = a + b;
+        //         console.log(c);
+        //     }
+
+        //     testAdd1();
+
+        //     // 문제 2) 사칙 연산(+,-,*,/)을 매개변수는 존재하고, 반환값이 없는 형태로 함수를 생성하고 호출하여 화면에 출력하세요
+        //     // 매개변수가 존재하고, 반환값은 없는 형태의 함수
+        //     console.log("----- 문제 2 -----");
+
+        //     function testAdd2(a, b) {
+        //         var c = a + b;
+        //         console.log(c);
+        //     }
+
+        //     testAdd2(10, 20); // testAdd2 함수를 호출 시 매개변수 2개를 입력해야 함
+
+        //     // 문제 3) 사칙 연산(+,-,*,/)을 매개변수는 없고, 반환값이 존재하여, 해당 반환값을 받아서 화면에 출력하세요
+        //     // 매개변수는 없고, 반환값이 존재
+        //     console.log("----- 문제 3 -----");
+
+        //     function testAdd3() {
+        //         var a = 10;
+        //         var b = 20;
+        //         var c = a + b;
+        //         return c;
+        //     }
+
+        //     var result = testAdd3(); // testAdd3 함수가 반환값이 존재하므로 testAdd3 함수 실행 후 되돌아오는 데이터를 받아줄 변수가 필요함
+        //     console.log(result); // 반환된 데이터를 출력
+
+        //     console.log(testAdd3()); // testAdd3 함수 실행 후 되돌아오는 데이터를 화면에 바로 출력
+        //         // 다른 변수에 반환값이 저장되지 않았으므로 1회용으로만 사용가능
+
+        //     // 문제 4) 사칙 연산(+,-,*,/)을 매개변수와 반환값이 모두 존재하는 형태로 함수를 생성하고 호출하여 화면에 출력하세요
+        //     function testAdd4(a, b) {
+        //         var c = a + b;
+        //         // console.log(c); // 해당 함수내에서 결과값을 사용하고 데이터를 반환해도 상관없음
+        //         return c;
+        //     }
+
+        //     var result = testAdd4(10, 20); // 매개변수를 통해서 데이터를 입력하고, testAdd4 함수 내에서 연산 후 그 결과값을 다시 result 변수에 반환함
+        //     console.log(result);
+        //     console.log(testAdd4(10, 20)); // 결과값을 다른 소스에서 활용하지 않을 경우 1회용으로 바로 사용해도 됨
+
+        // // 문제 5) 사용자 입력 통해서 점수를 입력받고, 해당 점수의 등급을 출력하는 프로그램을 작성하세요
+        // // 각각의 등급을 구분하는 소스 부분을 함수로 생성;
+        // // 각각의 등급은 5점씩 나누어서 A+, A, B+, B, C+, C, D+, D, F로 출력
+        // // 100 ~ 96, 95 ~ 90, 89 ~ 86, 86 ~ 80, 79 ~ 76, 75 ~ 70, 69 ~ 66, 65 ~ 60, 60 미만
+        // console.log("----- 문제 5 -----");
+
+        // function selectScore(score) {
+        //     if (score >= 90) {
+        //         if (score > 95) {
+        //             console.log("점수 : " + score + ", 등급 : A+");
+        //         }
+        //         else {
+        //             console.log("점수 : " + score + ", 등급 : A");
+        //         }
+        //     }
+        //     else if (score >= 80) {
+        //         if (score > 85) {
+        //             console.log("점수 : " + score + ", 등급 : B+");
+        //         }
+        //         else {
+        //             console.log("점수 : " + score + ", 등급 : B");
+        //         }
+        //     }
+        //     else if (score >= 70) {
+        //         if (score > 75) {
+        //             console.log("점수 : " + score + ", 등급 : C+");
+        //         }
+        //         else {
+        //             console.log("점수 : " + score + ", 등급 : C");
+        //         }
+        //     }
+        //     else if (score >= 60) {
+        //         if (score > 65) {
+        //             console.log("점수 : " + score + ", 등급 : D+");
+        //         }
+        //         else {
+        //             console.log("점수 : " + score + ", 등급 : D");
+        //         }
+        //     }
+        //     else {
+        //         console.log("점수 : " + score + ", 등급 : F");
+        //     }
+        // }
+
+        // var score = prompt("점수를 입력하세요 : ");
+        // score = Number(score);
+
+        // selectScore(score);
+
+        // // 문제 6) 사용자 입력을 통해서 원하는 단수의 구구단을 출력하는 프로그램을 작성하세요
+        // // 구구단 출력 부분과 사용자 입력을 받는 부분을 따로따로 함수로 생성해야 함
+        //     // 추가 : 화면 출력 부분을 함수로 따로 생성하여 출력
+        // console.log("----- 문제 6 -----");
+
+        // // 사용자 입력 부분
+        // function inputGugudan() {
+        //     var dan = prompt("출력할 구구단의 단수를 입력하세요 : ");
+        //     dan = Number(dan);
+
+        //     return dan;
+        // }
+        
+        // // 구구단 출력 부분
+        // function outputGugudan(dan) {
+        //     for (var i = 1; i <= 9; i++) {
+        //         printMSG(dan, i);
+        //         // console.log(dan + " * " + i + " = " + dan * i);
+        //     }
+        // }
+
+        // function printMSG(dan, i) {
+        //     console.log(dan + " * " + i + " = " + dan * i);
+        // }
+
+        // var dan = inputGugudan(); // 사용자가 입력한 구구단의 단수를 저장할 변수
+        // outputGugudan(dan);
+
+        // // 문제 7) 화면 출력 함수를 생성하여 사용자가 입력한 숫자만큼 화면에 '안녕하세요 (카운트)' 를 출력하는 프로그램을 작성하세요
+        // // 카운트는 1부터 시작
+        // console.log("----- 문제 7 -----");
+
+        // function print(count) {
+        //     for (var i = 1; i <= count; i++) {
+        //         console.log("안녕하세요 (" + i + ")");
+        //     }
+        // }
+
+        // var num = prompt("인사할 횟수를 입력하세요 : ");
+        // num = Number(num);
+
+        // print(num);
+
+        // // 문제 8) 랜덤 숫자를 사용하여 임의의 숫자 6개를 받아서 배열에 입력하고 화면에 출력하는 프로그램을 작성하세요
+        // // var rnd = Math.floor(Math.random() * 3) + 1;
+        // console.log("----- 문제 8 -----");
+        // var lotto1 = [];
+
+        // for (var i = 0; i < 6; i++) {
+        //     var rnd = Math.floor(Math.random() * 45) + 1;
+        //     lotto1.push(rnd);
+        // }
+
+        // for (var i = 0; i < lotto1.length; i++) {
+        //     if (i == lotto1.length - 1) {
+        //         console.log("보너스 로또 숫자 : " + lotto1[i]);
+        //     }
+        //     else {
+        //         console.log((i + 1) + "번째 로또 숫자 : " + lotto1[i]);
+        //     }
+        // }
+
+        // 문제 9) 문제 8번를 함수를 사용하여 표현하세요
+        // console.log("----- 문제 8 -----");
+        // function createLotto() {
+        //     for (var i = 0; i < 6; i++) {
+        //         var rnd = Math.floor(Math.random() * 45) + 1;
+        //         lotto2.push(rnd);
+        //     }
+        // }
+
+        // function printLotto() {
+        //     for (var i = 0; i < lotto2.length; i++) {
+        //         if (i == lotto2.length - 1) {
+        //             console.log("보너스 로또 숫자 : " + lotto2[i]);
+        //         }
+        //         else {
+        //             console.log((i + 1) + "번째 로또 숫자 : " + lotto2[i]);
+        //         }
+        //     }
+        // }
+
+        // var lotto2 = []; // 전역 변수, 전역 변수는 프로그램 전체에서 접근이 가능함
+        // createLotto();
+        // printLotto();
+
+        // 문제 10) 문제 9번을 이용해서 이번주 당첨번호를 생성 시 중복 번호가 발생할 수 있다. 여기서 중복 번호를 제거하는 프로그램을 작성 하세요
+        console.log("----- 문제 10 -----");
+
+        function createLotto3() {
+            for (var i = 0; i < 6; i++) {
+                // 1 ~ 45까지의 임의의 수 생성
+                var rnd = Math.floor(Math.random() * 45) + 1;
+
+                // 새로 생성된 임의의 숫자가 기존의 배열에 있는 숫자와 동일한 숫자인 확인
+                if (checkLotto3(rnd) == false) {
+                    // 기존의 배열에 저장된 숫자와 새로 생성된 숫자가 같지 않으면 배열에 저장
+                    lotto3.push(rnd);
+                }
+                else {
+                    // 기존의 배열에 저장된 숫자와 새로 생성된 숫자가 같으면 카운트 1 감소
+                    i = i - 1;
+                }
+            }
+        }
+
+        // 실제로 기존의 배열에 저장된 숫자와 새로 생성된 숫자가 같은지 확인하는 함수
+        // 매개 변수로 새로 생성된 임의의 숫자를 받음
+        function checkLotto3(rnd) {
+            var result = false; // 동일한 숫자가 있는지에 대한 상태값
+
+            // 현재까지 저장된 배열의 크기만큼 반복함
+            for (var i = 0; i < lotto3.length; i++) {
+                // 임의의 숫자와 배열에 저장된 숫자를 비교
+                if (rnd == lotto3[i]) {
+                    result = true; // 상태값을 true로 변경
+                    break; // 반복문 즉시 중지
+                }
+            }
+
+            return result;
+        }
+
+        function printLotto3() {
+            for (var i = 0; i < lotto3.length; i++) {
+                if (i == lotto3.length - 1) {
+                    console.log("보너스 로또 숫자 : " + lotto3[i]);
+                }
+                else {
+                    console.log((i + 1) + "번째 로또 숫자 : " + lotto3[i]);
+                }
+            }
+        }
+
+        var lotto3 = []; // 로또 번호가 저장될 배열
+        createLotto3();
+        printLotto3();
+
+        // 문제 11) 사용자 입력을 숫자로 받아서 그 숫자가 짝수인지 홀수인지 확인하여 화면에 출력하는 프로그램을 작성하세요
+        // 함수 사용(사용자 입력, 연산 부분)
+        console.log("----- 문제 11 -----");
+
+        function inputNumber() {
+            var num = prompt("숫자를 입력하세요 : ");
+            num = Number(num);
+            // number = num; // 전역변수 사용 시
+            return num; // 사용자가 입력한 숫자를 반환
+        }
+
+        // 입력된 숫자가 홀수인지 짝수인지 확인
+        function checkNumber(num) {
+            // 나머지 연산자를 사용하여 2로 나눈 후 나머지가 1이면 홀수 0이면 짝수
+            if (num % 2 == 1) {
+                outputNumber(num, "홀수");
+            }
+            else {
+                outputNumber(num, "짝수");
+            }
+        }
+
+        function outputNumber(number, text) {
+            console.log(number + "은 " + text + "입니다.");
+        }
+
+        // var number;
+        // inputNumber();// 사용자 입력 숫자
+        var number = inputNumber();// 사용자 입력 숫자
+        checkNumber(number); // 입력된 숫자 확인
+
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
